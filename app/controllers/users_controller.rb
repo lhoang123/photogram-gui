@@ -1,4 +1,14 @@
 class UsersController < ApplicationController
+  def create
+   
+    a = User.new
+    a.username = params.fetch("input_username")
+ 
+    a.save 
+ 
+    redirect_to("/users")
+   end 
+  
   def show
   url_username = params.fetch("path_username")
 
