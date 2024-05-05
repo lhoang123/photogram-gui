@@ -9,14 +9,14 @@
       </ul>
     </nav>
 
-    <h1>#<%= @username %></h1>
+    <h1> <%= @the_user.username %> </h1>
 
-    <dl>
+  <dl>
   <dt>
     ID
   </dt>
   <dd>
-    
+    <%= @the_user.id %>
   </dd>
 
   <dt>
@@ -26,14 +26,14 @@
   <dd>
     <form action="/update_user/117" method="post">
       <label for="browser_username">Username</label>
-      <input id="browser_username" type="text" name="input_username" value=@username>
+      <input id="browser_username" type="text" name="input_username" value= "<%= @the_user.username %>">
 
       <button>Update user</button>
     </form>
   </dd>
 </dl>
 
-<h2>Own photos (count goes here)</h2>
+<h2>Own photos (<%= @the_user.own_photos.count %>)</h2>
 
 <table border="1">
   <tr>
@@ -57,4 +57,29 @@
     </th>
   </tr>
 
+  <% @the_user.own_photos.each do |a_photo| %>
+    <tr>
+      <td>
+        <img src="<%= a_photo.image %>" style="width:250px;">
+      </td>
+
+      <td>
+        <%= a_photo.owner_id %>
+      </td>
+
+      <th>
+        <%= a_photo.caption %>
+      </th>
+
+      <td>
+        <%= a_photo.created_at %>
+      </td>
+
+      <td>
+        <a href="/photos/<%= a_photo.id %>">
+            Show details
+        </a>
+      </td>
+    </tr>
+  <% end %>
 </table>
