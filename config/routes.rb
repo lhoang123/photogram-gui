@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   get("/users", { :controller => "misc", :action => "homepage" })
 
-  get("/users/:username", { :controller => "misc", :action => "homepage" })
+  get("/users/:path_username", { :controller => "users", :action => "show" })
 end
